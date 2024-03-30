@@ -9,12 +9,12 @@ public class CameraFollow : MonoBehaviour
     public Vector3 offset;
     void Start()
     {
-        offset = objectToFollow.position - transform.position;
+        offset = this.transform.position - objectToFollow.position;
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.position = objectToFollow.position - offset;
+        transform.position = objectToFollow.position + offset;
     }
 }
