@@ -4,5 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/PhaseOne.unity
+    guid: d79e22aa13e4a44e7bbbae23a7dfc101
   m_configObjects: {}
