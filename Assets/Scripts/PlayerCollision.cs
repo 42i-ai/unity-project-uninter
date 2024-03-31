@@ -27,5 +27,17 @@ public class PlayerCollision : MonoBehaviour
         }
 
 
+
+
     }
+
+    void OnCollisionStay(Collision collision)
+    {
+        if (collision.collider.GetComponent<BreakableFloor>() != null)
+        {
+            collision.gameObject.GetComponent<BreakableFloor>().TakeDamage(1);
+        }
+
+    }
+
 }
