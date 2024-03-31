@@ -19,25 +19,27 @@ public class BreakableFloor : MonoBehaviour
 
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(int damage, ScoreBoard scoreBoard)
     {
-        Debug.Log("health: " + health);
-        health -= damage;
 
-        switch (health)
+
+        if (scoreBoard.getBarrelCaptured() == false)
         {
-            case healthYellow:
-                this.gameObject.GetComponent<MeshRenderer>().material.color = Color.yellow;
-                break;
-            case healthRed:
-                this.gameObject.GetComponent<MeshRenderer>().material.color = Color.red;
-                break;
-            case 0:
-                Destroy(gameObject);
-                break;
+            Debug.Log("health: " + health);
+            health -= damage;
+            switch (health)
+            {
+                case healthYellow:
+                    this.gameObject.GetComponent<MeshRenderer>().material.color = Color.yellow;
+                    break;
+                case healthRed:
+                    this.gameObject.GetComponent<MeshRenderer>().material.color = Color.red;
+                    break;
+                case 0:
+                    Destroy(gameObject);
+                    break;
+            }
         }
-
-
 
     }
 }

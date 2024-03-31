@@ -4,9 +4,10 @@ using UnityEngine;
 public class PlayerCollision : MonoBehaviour
 {
     // Start is called before the first frame update
+    public ScoreBoard scoreBoard;
     void Start()
     {
-
+        scoreBoard = GameObject.FindAnyObjectByType<ScoreBoard>();
     }
 
     // Update is called once per frame
@@ -18,15 +19,20 @@ public class PlayerCollision : MonoBehaviour
     void OnCollisionEnter(Collision collision)
     {
 
-
-
         if (collision.collider.tag == "box")
         {
+            if (collision.gameObject.GetComponent<MeshRenderer>().material.color != Color.yellow)
+            {
+                this.scoreBoard.setBoxedTurnedYellow();
+            }
             collision.gameObject.GetComponent<MeshRenderer>().material.color = Color.yellow;
             Debug.Log("collision detected" + collision.collider.tag);
         }
-
-
+        else if (collision.collider.tag == "collectible")
+        {
+            Destroy(collision.gameObject);
+            this.scoreBoard.setBarrelCaptured();
+        }
 
 
     }
@@ -35,9 +41,10 @@ public class PlayerCollision : MonoBehaviour
     {
         if (collision.collider.GetComponent<BreakableFloor>() != null)
         {
-            collision.gameObject.GetComponent<BreakableFloor>().TakeDamage(1);
+            collision.gameObject.GetComponent<BreakableFloor>().TakeDamage(1, this.scoreBoard);
         }
 
     }
+
 
 }
